@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
-import BlogHero from '@/components/BlogHero';
+import BlogHero from "@/components/BlogHero";
 
-import styles from './postSlug.module.css';
+import styles from "./postSlug.module.css";
 
-function BlogPost() {
+function BlogPost(): React.ReactNode {
   return (
     <article className={styles.wrapper}>
       <BlogHero
@@ -14,9 +14,8 @@ function BlogPost() {
       <div className={styles.page}>
         <p>This is where the blog post will go!</p>
         <p>
-          You will need to use <em>MDX</em> to render all of
-          the elements created from the blog post in this
-          spot.
+          You will need to use <em>MDX</em> to render all of the elements
+          created from the blog post in this spot.
         </p>
       </div>
     </article>

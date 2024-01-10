@@ -1,17 +1,12 @@
-import React from 'react';
+import React from "react";
+import BlogSummaryCard from "@/components/BlogSummaryCard";
+import styles from "./homepage.module.css";
 
-import BlogSummaryCard from '@/components/BlogSummaryCard';
-
-import styles from './homepage.module.css';
-
-function Home() {
+function Home(): React.ReactNode {
   return (
     <div className={styles.wrapper}>
-      <h1 className={styles.mainHeading}>
-        Latest Content:
-      </h1>
+      <h1 className={styles.mainHeading}>Latest Content:</h1>
 
-      {/* TODO: Iterate over the data read from the file system! */}
       <BlogSummaryCard
         slug="example"
         title="Hello world!"

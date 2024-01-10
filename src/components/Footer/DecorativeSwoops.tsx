@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import styles from './DecorativeSwoops.module.css';
+import styles from "./DecorativeSwoops.module.css";
 
-function DecorativeSwoops() {
+function DecorativeSwoops(): React.ReactNode {
   return (
     <div className={styles.wrapper}>
       <Blocker />
@@ -10,7 +10,7 @@ function DecorativeSwoops() {
   );
 }
 
-function Blocker() {
+function Blocker(): React.ReactNode {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -1,18 +1,34 @@
 import React from "react";
 import BlogSummaryCard from "@/components/BlogSummaryCard";
 import styles from "./homepage.module.css";
+import { getBlogPostList } from "@/helpers/file-helpers";
+import { BLOG_TITLE } from "@/constants";
 
-function Home(): React.ReactNode {
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: BLOG_TITLE,
+  description: "A wonderful blog about JavaScript",
+};
+
+async function Home() {
+  const posts = await getBlogPostList();
+
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.mainHeading}>Latest Content:</h1>
 
-      <BlogSummaryCard
-        slug="example"
-        title="Hello world!"
-        abstract="This is a placeholder, an example which shows how the “BlogSummaryCard” component should be used. You'll want to swap this out based on the data from the various MDX files!"
-        publishedOn={new Date()}
-      />
+      {posts.map((post) => {
+        return (
+          <BlogSummaryCard
+            key={post.slug}
+            slug={post.slug}
+            title={post.title}
+            abstract={post.abstract}
+            publishedOn={post.publishedOn}
+          />
+        );
+      })}
     </div>
   );
 }

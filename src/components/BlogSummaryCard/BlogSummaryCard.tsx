@@ -30,7 +30,7 @@ function BlogSummaryCard({
       >
         {title}
       </Link>
-      <time dateTime={publishedOn.toISOString()}>{humanizedDate}</time>
+      <time dateTime={humanizedDate}>{humanizedDate}</time>
       <p>
         {abstract}{" "}
         <Link

@@ -26,8 +26,7 @@ function BlogHero({
       <div className={styles.content}>
         <h1>{title}</h1>
         <p>
-          Published on{" "}
-          <time dateTime={publishedOn.toISOString()}>{humanizedDate}</time>
+          Published on <time dateTime={humanizedDate}>{humanizedDate}</time>
         </p>
       </div>
     </header>

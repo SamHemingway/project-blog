@@ -9,6 +9,8 @@ import SliderControl from "@/components/SliderControl";
 import Equation from "./Equation";
 import styles from "./DivisionGroupsDemo.module.css";
 
+import { motion, LayoutGroup } from "framer-motion";
+
 interface DivisionGroupsDemoTypes {
   numOfItems: number;
   initialNumOfGroups: number;
@@ -24,7 +26,7 @@ function DivisionGroupsDemo({
 
   const numOfItemsPerGroup = Math.floor(numOfItems / numOfGroups);
 
-  const remainder = includeRemainderArea ? numOfItems % numOfGroups : null;
+  const remainder = includeRemainderArea ? numOfItems % numOfGroups : 0;
 
   // When we're splitting into 1-3 groups, display side-by-side
   // columns. When we get to 4, it should switch to a 2x2 grid.
@@ -37,6 +39,8 @@ function DivisionGroupsDemo({
           gridTemplateColumns: "1fr 1fr",
           gridTemplateRows: "1fr 1fr",
         };
+
+  const id = React.useId();
 
   return (
     <Card
@@ -58,26 +62,32 @@ function DivisionGroupsDemo({
       </header>
 
       <div className={styles.demoWrapper}>
-        <div
-          className={clsx(styles.demoArea)}
-          style={gridStructure}
-        >
-          {range(numOfGroups).map((groupIndex) => (
-            <div
-              key={groupIndex}
-              className={styles.group}
-            >
-              {range(numOfItemsPerGroup).map((index) => {
-                return (
-                  <div
-                    key={index}
-                    className={styles.item}
-                  />
-                );
-              })}
-            </div>
-          ))}
-        </div>
+        <LayoutGroup>
+          <div
+            className={clsx(styles.demoArea)}
+            style={gridStructure}
+          >
+            {range(numOfGroups).map((groupIndex) => (
+              <div
+                key={groupIndex}
+                className={styles.group}
+              >
+                {range(numOfItemsPerGroup).map((index) => {
+                  const totalInLastGroup = groupIndex * numOfItemsPerGroup;
+
+                  const layoutId = `${id}-${index + 1 + totalInLastGroup}`;
+                  return (
+                    <motion.div
+                      key={layoutId}
+                      className={styles.item}
+                      layoutId={`${layoutId}`}
+                    />
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+        </LayoutGroup>
       </div>
 
       {includeRemainderArea && (

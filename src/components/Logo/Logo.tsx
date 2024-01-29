@@ -6,7 +6,7 @@ import { BLOG_TITLE } from "@/constants";
 import styles from "./Logo.module.css";
 
 interface LogoTypes {
-  mobileAlignment: "left" | "center" | "right";
+  mobileAlignment?: "left" | "center" | "right";
 }
 
 function Logo({ mobileAlignment = "left" }: LogoTypes) {

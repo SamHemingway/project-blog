@@ -1,14 +1,17 @@
 import React from "react";
 import clsx from "clsx";
-import { Rss, Sun, Moon } from "react-feather";
+import { Rss } from "react-feather";
 
 import Logo from "@/components/Logo";
 import VisuallyHidden from "@/components/VisuallyHidden";
+import ToggleTheme from "@/components/ToggleTheme";
 
 import styles from "./Header.module.css";
 
+export type ThemeOptions = "light" | "dark";
+
 type Header = React.HTMLAttributes<HTMLHeadElement> & {
-  theme: "light" | "dark";
+  theme: ThemeOptions;
 };
 
 function Header({ theme, className, ...delegated }: Header) {
@@ -30,10 +33,7 @@ function Header({ theme, className, ...delegated }: Header) {
           />
           <VisuallyHidden>View RSS feed</VisuallyHidden>
         </button>
-        <button className={styles.action}>
-          <Sun size="1.5rem" />
-          <VisuallyHidden>Toggle dark / light mode</VisuallyHidden>
-        </button>
+        <ToggleTheme initialTheme={theme} />
       </div>
     </header>
   );

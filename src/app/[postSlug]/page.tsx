@@ -5,12 +5,8 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { loadBlogPost } from "@/helpers/file-helpers";
 import { Metadata } from "next";
 import CodeSnippet from "@/components/CodeSnippet";
-
-import dynamic from "next/dynamic";
-
-const DivisionGroupsDemo = dynamic(
-  () => import("@/components/DivisionGroupsDemo")
-);
+import DivisionGroupsDemo from "@/components/DivisionGroupsDemo";
+import CircularColorsDemo from "@/components/CircularColorsDemo";
 
 interface BlogPostType {
   params: { postSlug: string };
@@ -47,7 +43,11 @@ async function BlogPost({ params }: BlogPostType) {
       <div className={styles.page}>
         <MDXRemote
           source={post.content}
-          components={{ pre: CodeSnippet, DivisionGroupsDemo }}
+          components={{
+            pre: CodeSnippet,
+            DivisionGroupsDemo,
+            CircularColorsDemo,
+          }}
         />
       </div>
     </article>
